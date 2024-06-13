@@ -1,0 +1,35 @@
+class Solution {
+    public int findmax(int arr[]){
+        int max= Integer.MIN_VALUE;
+        for(int i=0;i<arr.length;i++){
+            max= Math.max(arr[i],max);
+        }
+    return max;
+    }
+    public int minMovesToSeat(int[] seats, int[] students) {
+    int maxSeat=  findmax(seats);
+    int maxStudent =  findmax(students);
+    int seatcount[] = new int[maxSeat+1];
+ int studentcount[] = new int[maxStudent+1];
+ int totalstudent =students.length;
+ for (int i=0;i<  totalstudent;i++){
+    seatcount[seats[i]]++;
+    studentcount[students[i]]++;
+ }
+int moves= 0;
+int i=0;
+int j=0;
+while( totalstudent>0){
+    while(seatcount[i]==0){
+        i++;
+    }
+    while(studentcount[j]==0){
+        j++;
+    }
+    moves+= Math.abs(i-j);
+    seatcount[i]--;
+    studentcount[j]--;
+     totalstudent--;  
+}
+   return moves; }
+}
